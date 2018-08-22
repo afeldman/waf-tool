@@ -28,7 +28,7 @@ def configure(cfg):
         }.get(argument, platform.machine())
 
     set_def('GO_ARCH',set_go_arch(os.getenv('GOARCH')))
-    
+
     if conf.env.GO_ARCH == 'x86_64':
 	set_def('GO_COMPILER', '6g')
 	set_def('GO_LINKER', '6l')
@@ -39,7 +39,7 @@ def configure(cfg):
 	set_def('GO_COMPILER', '5g')
 	set_def('GO_LINKER', '5l')
 	set_def('GO_EXTENSION', '.5')
-        
+
     if not (conf.env.GO_COMPILER or conf.env.GO_LINKER):
 	raise conf.fatal('Unsupported platform ' + platform.machine())
 
@@ -54,7 +54,7 @@ def configure(cfg):
 
 class go(Task.Task):
     run_str = '${GOC} ${GOCFLAGS} ${CPPPATH_ST:INCPATHS} -o ${TGT} ${SRC}'
-    
+
 class gopackage(stlink_task):
     run_str = '${GOP} grc ${TGT} ${SRC}'
 
@@ -78,9 +78,9 @@ def gopackage_is_foobar(self):
 	    go.append(node)
         else:
 	    src.append(node)
-        
+
     self.source = src
-    tsk =self.create_compiled_task('go', go[0])
+    tsk = self.create_compiled_task('go', go[0])
     tsk.inputs.extend(go[1:])
 
 @feature('gopackage', 'goprogram')
