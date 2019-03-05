@@ -46,7 +46,7 @@ def loki_get_root(self,*k,**kw):
                 if self.__loki_get_file(dir):
                         return dir
 
-	self.fatal('TinyXML not found in %s'%root)
+	self.fatal('LOKI not found in %s'%root)
 
 @conf
 def check_loki(self,*k,**kw):
